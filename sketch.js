@@ -20,10 +20,9 @@ const serial = new p5.WebSerial();
 let portButton;
 // variable for incoming serial data:
 let inData;
-let x = 0;
 
 function setup() {
-  createCanvas(800,600);
+  createCanvas(400,100);
   background(255);
   noStroke();
 
@@ -64,12 +63,19 @@ function choosePort() {
 }
 
 function draw() {
-  if (inData >= 2 && inData < 300) {
+  if (inData >= 2 && inData < 100) {
     background(255);
-    fill("silver");
-    rect(40, height/2, inData*2, 50);
+    if (inData < 10) { 
+      fill("red");
+    } else if (inData < 40) { 
+      fill("orange");
+    } else {
+      fill("green");
+    }
+    let w = inData*3;
+    rect(40, height/2, w, 50);
     fill("black");
-    text(inData, 40, height/2+80);
+    text(inData, w+50, height/2+28);
   }
 }
 
